@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 let mongoose = require('mongoose');
 // telling my router that I have this model
-let Book = require('../model/book');
-const book = require('../model/book');
-let bookController = require('../controllers/book.js')
+let Contact = require('../model/contact');
+const contact = require('../model/contact');
+let contactController = require('../controllers/book.js')
 /* Get route for the book list - Read Operation */
 /*
 GET,
@@ -14,14 +14,14 @@ Put --> Edit/Update
 /* Read Operation --> Get route for displaying the books list */
 router.get('/',async(req,res,next)=>{
 try{
-    const BookList = await Book.find();
-    res.render('Book/list',{
-        title:'Books',
-        BookList:BookList
+    const ContactList = await Contact.find();
+    res.render('Contact/list',{
+        title:'Contacts',
+        ContactList:ContactList
     })}
     catch(err){
         console.error(err);
-        res.render('Book/list',{
+        res.render('Contact/list',{
             error:'Error on the server'
         })
     }
@@ -29,14 +29,14 @@ try{
 /* Create Operation --> Get route for displaying me the Add Page */
 router.get('/add',async(req,res,next)=>{
     try{
-        res.render('Book/add',{
-            title: 'Add Book'
+        res.render('Contact/add',{
+            title: 'Add Contact'
         })
     }
     catch(err)
     {
         console.error(err);
-        res.render('Book/list',{
+        res.render('Contact/list',{
             error:'Error on the server'
         })
     }
@@ -44,21 +44,20 @@ router.get('/add',async(req,res,next)=>{
 /* Create Operation --> Post route for processing the Add Page */
 router.post('/add',async(req,res,next)=>{
     try{
-        let newBook = Book({
+        let newContact = Contact({
             "Name":req.body.Name,
-            "Author":req.body.Author,
-            "Published":req.body.Published,
-            "Description":req.body.Description,
-            "Price":req.body.Price
+            "PhoneNumber":req.body.PhoneNumber,
+            "Notes":req.body.Notes,
+            "Email":req.body.Email
         });
-        Book.create(newBook).then(()=>{
-            res.redirect('/bookslist');
+        Contact.create(newContact).then(()=>{
+            res.redirect('/contactslist');
         })
     }
     catch(err)
     {
         console.error(err);
-        res.render('Book/list',{
+        res.render('Contact/list',{
             error:'Error on the server'
         })
     }
@@ -67,11 +66,11 @@ router.post('/add',async(req,res,next)=>{
 router.get('/edit/:id',async(req,res,next)=>{
     try{
         const id = req.params.id;
-        const bookToEdit= await Book.findById(id);
-        res.render('Book/edit',
+        const contactToEdit= await Contact.findById(id);
+        res.render('Contact/edit',
             {
-                title:'Edit Book',
-                Book:bookToEdit
+                title:'Edit Contact',
+                Contact:contactToEdit
             }
         )
     }
@@ -85,21 +84,20 @@ router.get('/edit/:id',async(req,res,next)=>{
 router.post('/edit/:id',async(req,res,next)=>{
     try{
         let id=req.params.id;
-        let updatedBook = Book({
+        let updatedContact = Contact({
             "_id":id,
             "Name":req.body.Name,
-            "Author":req.body.Author,
-            "Published":req.body.Published,
-            "Description":req.body.Description,
-            "Price":req.body.Price
+            "PhoneNumber":req.body.PhoneNumber,
+            "Notes":req.body.Notes,
+            "Email":req.body.Email
         });
-        Book.findByIdAndUpdate(id,updatedBook).then(()=>{
-            res.redirect('/bookslist')
+        Book.findByIdAndUpdate(id,updatedContact).then(()=>{
+            res.redirect('/contactslist')
         })
     }
     catch(err){
         console.error(err);
-        res.render('Book/list',{
+        res.render('Contact/list',{
             error:'Error on the server'
         })
     }
@@ -108,13 +106,13 @@ router.post('/edit/:id',async(req,res,next)=>{
 router.get('/delete/:id',async(req,res,next)=>{
     try{
         let id=req.params.id;
-        Book.deleteOne({_id:id}).then(()=>{
-            res.redirect('/bookslist')
+        Contact.deleteOne({_id:id}).then(()=>{
+            res.redirect('/contactslist')
         })
     }
     catch(error){
         console.error(err);
-        res.render('Book/list',{
+        res.render('Contact/list',{
             error:'Error on the server'
         })
     }
