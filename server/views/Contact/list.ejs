@@ -12,26 +12,24 @@
             <table class="table table-bordered table-striped table-hover">
                 <tr class="d-flex">
                     <th class="text-center col-2">Name</th>
-                    <th class="text-center col-2">Author</th>
-                    <th class="text-center col-1">Published</th>
-                    <th class="col-4">Description</th>
-                    <th class="text-center col-1">Price</th>
+                    <th class="text-center col-2">Phone Number</th>
+                    <th class="text-center col-1">Email</th>
+                    <th class="col-4">Notes</th>
                 </tr>
                 <% for(let count=0;count<BookList.length;count++) { %>
                 <tr class="d-flex">
-                    <td class="text-center col-2"><%= BookList[count].Name %></td>
-                    <td class="text-center col-2"><%= BookList[count].Author %></td>
-                    <td class="text-center col-1"><%=BookList[count].Published%></td>
-                    <td class="col-4"><%= BookList[count].Description %> </td>
-                    <td class="text-center col-1"><%= BookList[count].Price %></td>
+                    <td class="text-center col-2"><%= ContactList[count].Name %></td>
+                    <td class="text-center col-2"><%= ContactList[count].PhoneNumber %></td>
+                    <td class="text-center col-1"><%=ContactList[count].Email%></td>
+                    <td class="col-4"><%= BookList[count].Notes %> </td>
                     <td class="text-center col-1">
-                        <a href="/bookslist/edit/<%= BookList[count]._id%>"
+                        <a href="/bookslist/edit/<%= ContactList[count]._id%>"
                             class="btn btn-primary btn-sm">
                         <i class="fas fa-pencil-alt"></i>Edit
                     </a>
                     </td>
                     <td class="text-center col-1">
-                        <a href="/bookslist/delete/<%= BookList[count]._id%>"
+                        <a href="/bookslist/delete/<%= ContactList[count]._id%>"
                             class="btn btn-danger btn-sm">
                         <i class="fas fa-trash-alt"></i>Delete
                     </a>
