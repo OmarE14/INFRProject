@@ -6,8 +6,8 @@
         <div class="offset-md-1 col-md-10">
             <h1><%= title %></h1>
             <br>
-            <a href="/bookslist/add" class="btn btn-primary" role="button">
-                <i class="fas fa-plus-circle"></i> Add Book
+            <a href="/contactlist/add" class="btn btn-primary" role="button">
+                <i class="fas fa-plus-circle"></i> Add Contact
             </a>
             <table class="table table-bordered table-striped table-hover">
                 <tr class="d-flex">
@@ -16,20 +16,20 @@
                     <th class="text-center col-1">Email</th>
                     <th class="col-4">Notes</th>
                 </tr>
-                <% for(let count=0;count<BookList.length;count++) { %>
+                <% for(let count=0;count<ContactList.length;count++) { %>
                 <tr class="d-flex">
                     <td class="text-center col-2"><%= ContactList[count].Name %></td>
                     <td class="text-center col-2"><%= ContactList[count].PhoneNumber %></td>
                     <td class="text-center col-1"><%=ContactList[count].Email%></td>
-                    <td class="col-4"><%= BookList[count].Notes %> </td>
+                    <td class="col-4"><%= ContactList[count].Notes %> </td>
                     <td class="text-center col-1">
-                        <a href="/bookslist/edit/<%= ContactList[count]._id%>"
+                        <a href="/contactlist/edit/<%= ContactList[count]._id%>"
                             class="btn btn-primary btn-sm">
                         <i class="fas fa-pencil-alt"></i>Edit
                     </a>
                     </td>
                     <td class="text-center col-1">
-                        <a href="/bookslist/delete/<%= ContactList[count]._id%>"
+                        <a href="/contactlist/delete/<%= ContactList[count]._id%>"
                             class="btn btn-danger btn-sm">
                         <i class="fas fa-trash-alt"></i>Delete
                     </a>

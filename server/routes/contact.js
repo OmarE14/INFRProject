@@ -51,7 +51,7 @@ router.post('/add',async(req,res,next)=>{
             "Email":req.body.Email
         });
         Contact.create(newContact).then(()=>{
-            res.redirect('/contactslist');
+            res.redirect('/contactlist');
         })
     }
     catch(err)
@@ -92,7 +92,7 @@ router.post('/edit/:id',async(req,res,next)=>{
             "Email":req.body.Email
         });
         Book.findByIdAndUpdate(id,updatedContact).then(()=>{
-            res.redirect('/contactslist')
+            res.redirect('/contactlist')
         })
     }
     catch(err){
@@ -107,7 +107,7 @@ router.get('/delete/:id',async(req,res,next)=>{
     try{
         let id=req.params.id;
         Contact.deleteOne({_id:id}).then(()=>{
-            res.redirect('/contactslist')
+            res.redirect('/contactlist')
         })
     }
     catch(error){
